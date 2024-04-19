@@ -108,28 +108,17 @@
     };
 
     function toMorseCode(text) {
-      const upperCaseText = text.toUpperCase();
-      let morseCode = "";
-      for (let i = 0; i < upperCaseText.length; i++) {
-        const char = upperCaseText[i];
-        if (morseCodeMap[char]) {
-          morseCode += morseCodeMap[char] + " ";
-        }
-      }
-      return morseCode.trim();
+      return text.toUpperCase()
+        .split('')
+        .map(char => morseCodeMap[char] ? morseCodeMap[char] + ' ' : '')
+        .join('')
+        .trim();
     }
     
     function toText(morseCode) {
-      const morseCodeArray = morseCode.split(" ");
-      let text = "";
-      for (let i = 0; i < morseCodeArray.length; i++) {
-          const code = morseCodeArray[i];
-          const char = Object.keys(morseCodeMap).find(key => morseCodeMap[key] === code);
-          if (char) {
-              text += char;
-          }
-      }
-      return text;
+      return morseCode.split(" ")
+        .map(code => Object.keys(morseCodeMap).find(key => morseCodeMap[key] === code) || '')
+        .join('');
     }
   </script>
 </body>
