@@ -58,47 +58,66 @@
       document.getElementById("output").textContent = text;
     }
     
-      const morseCodeMap = {
-        A: ".-",
-        B: "-...",
-        C: "-.-.",
-        D: "-..",
-        E: ".",
-        F: "..-.",
-        G: "--.",
-        H: "....",
-        I: "..",
-        J: ".---",
-        K: "-.-",
-        L: ".-..",
-        M: "--",
-        N: "-.",
-        O: "---",
-        P: ".--.",
-        Q: "--.-",
-        R: ".-.",
-        S: "...",
-        T: "-",
-        U: "..-",
-        V: "...-",
-        W: ".--",
-        X: "-..-",
-        Y: "-.--",
-        Z: "--..",
-        " ": "/"
-      };
+    const morseCodeMap = {
+      "0": "-----",
+      "1": ".----",
+      "2": "..---",
+      "3": "...--",
+      "4": "....-",
+      "5": ".....",
+      "6": "-....",
+      "7": "--...",
+      "8": "---..",
+      "9": "----.",
+      "A": ".-",
+      "B": "-...",
+      "C": "-.-.",
+      "D": "-..",
+      "E": ".",
+      "F": "..-.",
+      "G": "--.",
+      "H": "....",
+      "I": "..",
+      "J": ".---",
+      "K": "-.-",
+      "L": ".-..",
+      "M": "--",
+      "N": "-.",
+      "O": "---",
+      "P": ".--.",
+      "Q": "--.-",
+      "R": ".-.",
+      "S": "...",
+      "T": "-",
+      "U": "..-",
+      "V": "...-",
+      "W": ".--",
+      "X": "-..-",
+      "Y": "-.--",
+      "Z": "--..",
+      ".": ".-.-.-",
+      ",": "--..--",
+      "?": "..--..",
+      "!": "-.-.--",
+      "-": "-....-",
+      "/": "-..-.",
+      "@": ".--.-.",
+      "(": "-.--.",
+      ")": "-.--.-",
+      " ": "//"
+    };
 
-      function toMorseCode(text) {
-        const upperCaseText = text.toUpperCase();
-        let morseCode = "";
-        for (let i = 0; i < upperCaseText.length; i++) {
-          const char = upperCaseText[i];
-          if (morseCodeMap[char]) {
-            morseCode += morseCodeMap[char] + " ";
-          }
+    function toMorseCode(text) {
+      const upperCaseText = text.toUpperCase();
+      let morseCode = "";
+      for (let i = 0; i < upperCaseText.length; i++) {
+        const char = upperCaseText[i];
+        if (morseCodeMap[char]) {
+          morseCode += morseCodeMap[char] + " ";
         }
-        return morseCode.trim();
       }
+      return morseCode.trim();
+    }
     
     function toText(morseCode) {
       const morseCodeArray = morseCode.split(" ");
