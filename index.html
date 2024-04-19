@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morse Code Translator</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      color: #333;
+      font-size: 2em;
+    }
+    
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 1em;
+    }
+    
+    #output {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Morse Code Translator</h1>
+  
+  <label for="input">Text:</label>
+  <input type="text" id="input" placeholder="Enter text to translate">
+  
+  <button onclick="translateToMorse()">Translate to Morse</button>
+  <button onclick="translateToText()">Translate to Text</button>
+  
+  <p id="output"></p>
+  
+  <script>
+    function translateToMorse() {
+      const text = document.getElementById("input").value;
+      const morseCode = toMorseCode(text);
+      document.getElementById("output").textContent = morseCode;
+    }
+    
+    function translateToText() {
+      const morseCode = document.getElementById("input").value;
+      const text = toText(morseCode);
+      document.getElementById("output").textContent = text;
+    }
+    
+      const morseCodeMap = {
+        A: ".-",
+        B: "-...",
+        C: "-.-.",
+        D: "-..",
+        E: ".",
+        F: "..-.",
+        G: "--.",
+        H: "....",
+        I: "..",
+        J: ".---",
+        K: "-.-",
+        L: ".-..",
+        M: "--",
+        N: "-.",
+        O: "---",
+        P: ".--.",
+        Q: "--.-",
+        R: ".-.",
+        S: "...",
+        T: "-",
+        U: "..-",
+        V: "...-",
+        W: ".--",
+        X: "-..-",
+        Y: "-.--",
+        Z: "--..",
+        " ": "/"
+      };
+
+      function toMorseCode(text) {
+        const upperCaseText = text.toUpperCase();
+        let morseCode = "";
+        for (let i = 0; i < upperCaseText.length; i++) {
+          const char = upperCaseText[i];
+          if (morseCodeMap[char]) {
+            morseCode += morseCodeMap[char] + " ";
+          }
+        }
+        return morseCode.trim();
+      }
+    
+    function toText(morseCode) {
+      const morseCodeArray = morseCode.split(" ");
+      let text = "";
+      for (let i = 0; i < morseCodeArray.length; i++) {
+          const code = morseCodeArray[i];
+          const char = Object.keys(morseCodeMap).find(key => morseCodeMap[key] === code);
+          if (char) {
+              text += char;
+          }
+      }
+      return text;
+    }
+  </script>
+</body>
+</html>
